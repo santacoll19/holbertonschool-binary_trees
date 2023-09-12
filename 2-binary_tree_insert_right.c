@@ -12,28 +12,28 @@
  */
 binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 {
-    binary_tree_t *new_node;
+	binary_tree_t *new_node;
 
-    // Allocate memory for the new node
-    new_node = binary_tree_node(parent, value);
-    if (new_node == NULL)
-        return (NULL); // Return NULL on memory allocation failure
+	// Allocate memory for the new node
+	new_node = binary_tree_node(parent, value);
+	if (new_node == NULL)
+		return (NULL); // Return NULL on memory allocation failure
 
 
-    if (parent == NULL)
-        return (NULL); // Return NULL if the parent is NULL
+	if (parent == NULL)
+		return (NULL); // Return NULL if the parent is NULL
 
-    // If parent already has a right child, move it to the new node's right
-    if (parent->right != NULL)
-    {
-        new_node->right = parent->right;
-        new_node->right->parent = new_node;
-    }
+	// If parent already has a right child, move it to the new node's right
+	if (parent->right != NULL)
+	{
+		new_node->right = parent->right;
+		new_node->right->parent = new_node;
+	}
 
-    // Set the new node as the parent's right child
-    parent->right = new_node;
+	// Set the new node as the parent's right child
+	parent->right = new_node;
 
-    return (new_node);
+	return (new_node);
 }
 
 /**
@@ -43,36 +43,36 @@ binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
  */
 void binary_tree_print(const binary_tree_t *tree)
 {
-    if (tree == NULL)
-        return;
+	if (tree == NULL)
+		return;
 
-    printf("(");
-    printf("%d", tree->n);
+	printf("(");
+	printf("%d", tree->n);
 
-    binary_tree_print(tree->left);
-    binary_tree_print(tree->right);
+	binary_tree_print(tree->left);
+	binary_tree_print(tree->right);
 
-    printf(")");
+	printf(")");
 }
 
 int main(void)
 {
-    binary_tree_t *root;
+	binary_tree_t *root;
 
-    root = binary_tree_node(NULL, 98);
-    root->left = binary_tree_node(root, 12);
-    root->right = binary_tree_node(root, 402);
+	root = binary_tree_node(NULL, 98);
+	root->left = binary_tree_node(root, 12);
+	root->right = binary_tree_node(root, 402);
 
-    printf("Original Tree:\n");
-    binary_tree_print(root);
-    printf("\n");
+	printf("Original Tree:\n");
+	binary_tree_print(root);
+	printf("\n");
 
-    binary_tree_insert_right(root->left, 54);
-    binary_tree_insert_right(root, 128);
+	binary_tree_insert_right(root->left, 54);
+	binary_tree_insert_right(root, 128);
 
-    printf("Modified Tree:\n");
-    binary_tree_print(root);
-    printf("\n");
+	printf("Modified Tree:\n");
+	binary_tree_print(root);
+	printf("\n");
 
-    return (0);
+	return (0);
 }

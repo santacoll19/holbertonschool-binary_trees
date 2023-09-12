@@ -15,13 +15,17 @@ binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 	binary_tree_t *new_node;
 
 	// Allocate memory for the new node
-	new_node = binary_tree_node(parent, value);
+	new_node = malloc(sizeof(binary_tree_t));
 	if (new_node == NULL)
 		return (NULL); // Return NULL on memory allocation failure
 
 
 	if (parent == NULL)
 		return (NULL); // Return NULL if the parent is NULL
+
+	new_node->n = value;
+	new_node->parent =parent;
+	new_node->left = NULL;
 
 	// If parent already has a right child, move it to the new node's right
 	if (parent->right != NULL)
@@ -34,45 +38,4 @@ binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 	parent->right = new_node;
 
 	return (new_node);
-}
-
-/**
- * binary_tree_print - Prints a binary tree using in-order traversal
- *
- * @tree: Pointer to the root node of the tree to print
- */
-void binary_tree_print(const binary_tree_t *tree)
-{
-	if (tree == NULL)
-		return;
-
-	printf("(");
-	printf("%d", tree->n);
-
-	binary_tree_print(tree->left);
-	binary_tree_print(tree->right);
-
-	printf(")");
-}
-
-int main(void)
-{
-	binary_tree_t *root;
-
-	root = binary_tree_node(NULL, 98);
-	root->left = binary_tree_node(root, 12);
-	root->right = binary_tree_node(root, 402);
-
-	printf("Original Tree:\n");
-	binary_tree_print(root);
-	printf("\n");
-
-	binary_tree_insert_right(root->left, 54);
-	binary_tree_insert_right(root, 128);
-
-	printf("Modified Tree:\n");
-	binary_tree_print(root);
-	printf("\n");
-
-	return (0);
 }

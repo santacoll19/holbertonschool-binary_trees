@@ -14,13 +14,14 @@ binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 {
     binary_tree_t *new_node;
 
-    if (parent == NULL)
-        return (NULL); // Return NULL if the parent is NULL
-
     // Allocate memory for the new node
     new_node = binary_tree_node(parent, value);
     if (new_node == NULL)
         return (NULL); // Return NULL on memory allocation failure
+
+
+    if (parent == NULL)
+        return (NULL); // Return NULL if the parent is NULL
 
     // If parent already has a right child, move it to the new node's right
     if (parent->right != NULL)
